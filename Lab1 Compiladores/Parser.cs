@@ -8,118 +8,117 @@ namespace Lab1_Compiladores
     {
         Scanner scanner;
         Token nextToken;
-       
-        private void E()
+
+        private double E()
         {
             switch (nextToken.Tag)
             {
                 case TokenType.Minus:
                 case TokenType.Num:
                 case TokenType.LParen:
-                    T();
-                    EP();
-                    break;
+                    double x = T() + EP();
+                    return x;
                 default:
-                    break;
+                    return 0.0;
             }
         }
-        private void EP()
+        private double EP()
         {
             switch (nextToken.Tag)
             {
                 case TokenType.Plus:
                     Match(TokenType.Plus);
-                    T();
-                    EP();
-                    break;
+                    double x = T() + EP();
+                    return x;
                 case TokenType.Minus:
                     Match(TokenType.Minus);
-                    T();
-                    EP();
-                    break;
+                    double y = -T() + EP();
+                    return y;
                 default:
-                    break;
+                    return 0.0;
             }
         }
-        private void T()
+        private double T()
         {
             switch (nextToken.Tag)
             {
                 case TokenType.Minus:
                 case TokenType.Num:
                 case TokenType.LParen:
-                    F();
-                    TP();
-                    break;
+                    double x = F() * TP();
+                    return x;
                 default:
-                    break;
+                    return 0.0;
             }
         }
-        private void TP()
+        private double TP()
         {
             switch (nextToken.Tag)
             {
                 case TokenType.Mult:
                     Match(TokenType.Mult);
-                    F();
-                    TP();
-                    break;
+                    double x = F() * TP();
+                    return x;
                 case TokenType.Div:
                     Match(TokenType.Div);
-                    F();
-                    TP();
-                    break;
+                    double y = (1 / F()) * TP();
+                    return y;
                 default:
-                    break;
+                    return 1.0;
             }
         }
-        private void F()
+        private double F()
         {
             switch (nextToken.Tag)
             {
                 case TokenType.Minus:
                     Match(TokenType.Minus);
-                    M();
-                    break;
+                    double x = -M();
+                    return x;
                 case TokenType.Num:
                 case TokenType.LParen:
-                    M();
-                    break;
+                    double y = M();
+                    return y;
                 default:
-                    break;
+                    return 0.0;
             }
         }
-        private void M()
+        private double M()
         {
             switch (nextToken.Tag)
             {
                 case TokenType.Num:
-                    Match(TokenType.Num);
-                    break;
+                    return Match(TokenType.Num);
                 case TokenType.LParen:
                     Match(TokenType.LParen);
-                    E();
+                    double outE = E();
                     Match(TokenType.RParen);
-                    break;
+                    return outE;
                 default:
-                    break;
+                    return 0.0;
             }
         }
-        private void Match(TokenType tag)
+        private double Match(TokenType tag)
         {
+            double output = 0;
             if (nextToken.Tag == tag)
             {
+                if (nextToken.Tag == TokenType.Num)
+                {
+                    output = Convert.ToDouble(nextToken.Value);
+                }
                 nextToken = scanner.GetToken();
             }
             else
             {
                 throw new Exception("Error de sintaxis, Caracter esperado: " + tag);
             }
+            return output;
         }
 
-        public void Parse(string regexp)
+        public double Parse(string regexp)
         {
-
+            double output = 0;
             scanner = new Scanner(regexp + (char)TokenType.EOF);
             nextToken = scanner.GetToken();
             switch (nextToken.Tag)
@@ -127,12 +126,13 @@ namespace Lab1_Compiladores
                 case TokenType.Minus:
                 case TokenType.Num:
                 case TokenType.LParen:
-                    E();
+                    output = E();
                     break;
                 default:
                     break;
             }
             Match(TokenType.EOF);
+            return output;
         }
     }
 }

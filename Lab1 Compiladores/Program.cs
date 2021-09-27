@@ -14,10 +14,10 @@ namespace Lab1_Compiladores
             //    Console.WriteLine("token: {0}, valor: {1}", nexttoken.Tag, nexttoken.Value);
             //} while (nexttoken.Tag != TokenType.EOF);
 
-            //-2+8*4/(5-3)
-            string regexp = Console.ReadLine();
+            //-2+8*4/-(5-3)
+            //string regexp = Console.ReadLine();
             Parser prser = new Parser();
-            prser.Parse(regexp);
+            Console.WriteLine(prser.Parse("-2+8*4/-(5-3)+16*1"));
             Console.WriteLine("EXITO");
             Console.ReadKey();
         }
