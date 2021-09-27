@@ -6,4 +6,8 @@
     <RootNamespace>Lab1_Compiladores</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Extras\" />
+  </ItemGroup>
+
 </Project>
