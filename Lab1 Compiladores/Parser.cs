@@ -16,8 +16,7 @@ namespace Lab1_Compiladores
                 case TokenType.Minus:
                 case TokenType.Num:
                 case TokenType.LParen:
-                    double x = T() + EP();
-                    return x;
+                    return T() + EP();
                 default:
                     return 0.0;
             }
@@ -28,12 +27,10 @@ namespace Lab1_Compiladores
             {
                 case TokenType.Plus:
                     Match(TokenType.Plus);
-                    double x = T() + EP();
-                    return x;
+                    return T() + EP();
                 case TokenType.Minus:
                     Match(TokenType.Minus);
-                    double y = -T() + EP();
-                    return y;
+                    return -T() + EP();
                 default:
                     return 0.0;
             }
@@ -45,8 +42,7 @@ namespace Lab1_Compiladores
                 case TokenType.Minus:
                 case TokenType.Num:
                 case TokenType.LParen:
-                    double x = F() * TP();
-                    return x;
+                    return F() * TP();
                 default:
                     return 0.0;
             }
@@ -57,12 +53,10 @@ namespace Lab1_Compiladores
             {
                 case TokenType.Mult:
                     Match(TokenType.Mult);
-                    double x = F() * TP();
-                    return x;
+                    return F() * TP();
                 case TokenType.Div:
                     Match(TokenType.Div);
-                    double y = (1 / F()) * TP();
-                    return y;
+                    return (1 / F()) * TP();
                 default:
                     return 1.0;
             }
@@ -73,12 +67,10 @@ namespace Lab1_Compiladores
             {
                 case TokenType.Minus:
                     Match(TokenType.Minus);
-                    double x = -M();
-                    return x;
+                    return -M();
                 case TokenType.Num:
                 case TokenType.LParen:
-                    double y = M();
-                    return y;
+                    return M();
                 default:
                     return 0.0;
             }
