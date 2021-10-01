@@ -7,9 +7,9 @@ namespace Lab1_Compiladores
         static void Main(string[] args)
         {
             //-2+8*4/(5-3)
-            //string regexp = Console.ReadLine();
+            string entrada = Console.ReadLine(); 
             Parser prser = new Parser();
-            Console.WriteLine(prser.Parse("-2+8*4/(5-3)"));
+            Console.WriteLine(prser.Parse(entrada)); 
             Console.WriteLine("EXITO");
             Console.ReadKey();
         }
