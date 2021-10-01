@@ -16,7 +16,7 @@ namespace Lab1_Compiladores
                 case TokenType.LParen:
                     return T() + EP();
                 default:
-                    return 0.0;
+                    throw new Exception("Error de sintaxis");
             }
         }
         private double EP()
@@ -42,7 +42,7 @@ namespace Lab1_Compiladores
                 case TokenType.LParen:
                     return F() * TP();
                 default:
-                    return 0.0;
+                    throw new Exception("Error de sintaxis");
             }
         }
         private double TP()
@@ -70,7 +70,7 @@ namespace Lab1_Compiladores
                 case TokenType.LParen:
                     return M();
                 default:
-                    return 1;
+                    throw new Exception("Error de sintaxis");
             }
         }
         private double M()
@@ -85,7 +85,7 @@ namespace Lab1_Compiladores
                     Match(TokenType.RParen);
                     return outE;
                 default:
-                    return 0.0;
+                    throw new Exception("Error de sintaxis");
             }
         }
         private double Match(TokenType tag)
