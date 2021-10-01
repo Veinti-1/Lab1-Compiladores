@@ -70,7 +70,7 @@ namespace Lab1_Compiladores
                 case TokenType.LParen:
                     return M();
                 default:
-                    return 0.0;
+                    return 1;
             }
         }
         private double M()
